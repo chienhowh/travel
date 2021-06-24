@@ -17,9 +17,7 @@ export const Header: React.FC = () => {
                     語言
                 </Dropdown.Button>
                 <Button.Group className={style['button-group']}>
-                    <Link to={'register'}>
-                        <Button >註冊</Button>
-                    </Link>
+                    <Button onClick={() => history.push('register')}>註冊</Button>
                     <Button onClick={() => history.push('signIn')}>登錄</Button>
                 </Button.Group>
             </div>
