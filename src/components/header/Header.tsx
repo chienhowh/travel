@@ -2,8 +2,10 @@ import { GlobalOutlined } from "@ant-design/icons"
 import logo from '../../assets/logo.svg';
 import { Typography, Dropdown, Menu, Button, Layout, Input } from "antd"
 import style from './Header.module.css';
+import { useHistory, Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
+    const history = useHistory();
     return (<div className={style['app-header']}>
         <div className={style['top-header']}>
             <div className={style.inner}>
@@ -15,14 +17,18 @@ export const Header: React.FC = () => {
                     語言
                 </Dropdown.Button>
                 <Button.Group className={style['button-group']}>
-                    <Button>註冊</Button>
-                    <Button>登錄</Button>
+                    <Link to={'register'}>
+                        <Button >註冊</Button>
+                    </Link>
+                    <Button onClick={() => history.push('signIn')}>登錄</Button>
                 </Button.Group>
             </div>
         </div>
         <Layout.Header className={style['main-header']}>
-            <img src={logo} alt="" className={style['App-logo']} />
-            <Typography.Title level={3} className={style.title}>旅遊網</Typography.Title>
+            <span onClick={() => history.push('/')}>
+                <img src={logo} alt="" className={style['App-logo']} />
+                <Typography.Title level={3} className={style.title}>旅遊網</Typography.Title>
+            </span>
             <Input.Search placeholder="請輸入旅遊目的地" className={style['search-input']}></Input.Search>
         </Layout.Header>
 
