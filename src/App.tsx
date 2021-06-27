@@ -2,7 +2,6 @@ import React from 'react';
 import style from './App.module.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { DetailPage, Homepage, Register, SignIn } from './pages';
-
 function App() {
   return (
     <div className={style.App}>
