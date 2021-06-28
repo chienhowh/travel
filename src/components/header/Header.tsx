@@ -12,11 +12,10 @@ import { useSelector } from '../../redux/hooks'; //
 
 
 export const Header: React.FC = () => {
-
     const history = useHistory(); // router
     const { t } = useTranslation(); // i18n
-    const language = useSelector(state => state.language); // store get language
-    const languageList = useSelector(state => state.languageList);
+    const language = useSelector(state => state.language.language); // store get language
+    const languageList = useSelector(state => state.language.languageList);
     const dispatch = useDispatch();// dispatch action
 
     const handleLanguage = (e: any) => {
