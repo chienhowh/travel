@@ -7,11 +7,9 @@ import sideImage from '../../assets/images/sider_2019_12-09.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
 import { useSelector } from "../../redux/hooks";
-import { useDispatch } from 'react-redux'
-import { fetchRecommendProductFailActionCreator, fetchRecommendProductSuccessActionCreator } from "../../redux/recommendProduct/recommendProductAction";
-
+import { fetchRecommendProductCreator } from "../../redux/recommendProduct/recommendProductAction";
+import { useDispatch } from 'react-redux';
 
 export const Homepage: React.FC = () => {
     const { t } = useTranslation();// i18n
@@ -20,19 +18,13 @@ export const Homepage: React.FC = () => {
     const isLoading = useSelector(state => state.recommendProduct.isLoading);
     const dispatch = useDispatch();
 
-    async function getRecommendProduct() {
-        try {
-            const { data } = await axios.get('http://123.56.149.216:8089/api/productCollections');
-            const action = fetchRecommendProductSuccessActionCreator(data)
-            dispatch(action);
-        } catch (error) {
-            const action = fetchRecommendProductFailActionCreator(error);
-            dispatch(action);
-        }
+     function getRecommendProduct() {
+         dispatch(fetchRecommendProductCreator());
     }
 
     useEffect(() => {
         getRecommendProduct();
+        // eslint-disable-next-line
     }, []);
 
     if (isLoading) {

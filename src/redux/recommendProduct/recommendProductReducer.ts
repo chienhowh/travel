@@ -1,4 +1,4 @@
-import { fetchRecommendProductStartActionCreator, FETCH_RECOMMEND_PRODUCT_FAIL, FETCH_RECOMMEND_PRODUCT_START, FETCH_RECOMMEND_PRODUCT_SUCCESS, recommendProductAction } from "./recommendProductAction";
+import { FETCH_RECOMMEND_PRODUCT_FAIL, FETCH_RECOMMEND_PRODUCT_START, FETCH_RECOMMEND_PRODUCT_SUCCESS, recommendProductAction } from "./recommendProductAction";
 
 export interface RecommendProductState {
     isLoading: boolean;
