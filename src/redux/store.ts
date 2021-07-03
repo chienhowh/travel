@@ -1,13 +1,16 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import languageReducer from './language/languageReducer';
 import recommendProductReducer from './recommendProduct/recommendProductReducer';
 import thunk from 'redux-thunk';
 import { actionLog } from './middlewares/actionlog';
+import {combineReducers} from '@reduxjs/toolkit';
+import { productDetail } from './productdetail/slice';
 
 // 包含全部reducer
 const rootReducer = combineReducers({
     language: languageReducer,
-    recommendProduct: recommendProductReducer
+    recommendProduct: recommendProductReducer,
+    productDetail:productDetail.reducer
 })
 const store = createStore(rootReducer, applyMiddleware(thunk, actionLog));
 

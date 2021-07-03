@@ -1,11 +1,14 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Header, Footer, ProductIntro, ProductComments } from '../../components';
 import axios from 'axios';
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'antd';
 import styles from './Detailpage.module.css';
 import { commentMockData } from './mockup';
+import { useSelector } from '../../redux/hooks';
+import { productDetail } from '../../redux/productdetail/slice';
+import { useDispatch } from 'react-redux';
 interface MatchParams {
     touristRouteId: string;
 }
@@ -14,22 +17,23 @@ const { RangePicker } = DatePicker;
 
 export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
     const { touristRouteId } = useParams<MatchParams>();
-    const [error, setError] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [product, setProduct] = useState<any>(null);
+    // const [error, setError] = useState<string | null>(null);
+    // const [isLoading, setIsLoading] = useState<boolean>(true);
+    // const [product, setProduct] = useState<any>(null);
+    const error = useSelector(state => state.productDetail.error);
+    const loading = useSelector(state => state.productDetail.loading);
+    const product = useSelector(state => state.productDetail.product);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true);
+            dispatch(productDetail.actions.fetchStart())//actions是actioncreator
             try {
                 const { data } = await axios.get(`http://123.56.149.216:8089/api/touristRoutes/${touristRouteId}`);
-                setProduct(data);
-                setIsLoading(false);
-                console.log(product);
+               dispatch(productDetail.actions.fetchSuccess(data));
 
             } catch (error) {
-                setIsLoading(false);
-                setError(error.message);
+                dispatch(productDetail.actions.fetchFail(error.message));
             }
         }
 
@@ -38,7 +42,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
         []);
 
     /** fetch data 保護 */
-    if (isLoading) {
+    if (loading) {
         return (<Spin size="large"
             style={{
                 marginTop: 200,
