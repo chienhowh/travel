@@ -2,12 +2,11 @@
 import { useEffect } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Header, Footer, ProductIntro, ProductComments } from '../../components';
-import axios from 'axios';
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'antd';
 import styles from './Detailpage.module.css';
 import { commentMockData } from './mockup';
 import { useSelector } from '../../redux/hooks';
-import { productDetail } from '../../redux/productdetail/slice';
+import { getProductDetail } from '../../redux/productdetail/slice';
 import { useDispatch } from 'react-redux';
 interface MatchParams {
     touristRouteId: string;
@@ -26,18 +25,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            dispatch(productDetail.actions.fetchStart())//actions是actioncreator
-            try {
-                const { data } = await axios.get(`http://123.56.149.216:8089/api/touristRoutes/${touristRouteId}`);
-               dispatch(productDetail.actions.fetchSuccess(data));
-
-            } catch (error) {
-                dispatch(productDetail.actions.fetchFail(error.message));
-            }
-        }
-
-        fetchData();
+        dispatch(getProductDetail(touristRouteId))
     },  // eslint-disable-next-line
         []);
 

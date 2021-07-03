@@ -1,4 +1,4 @@
-import { Tooltip, Comment, List } from 'antd';
+import { Comment, List } from 'antd';
 
 interface PropsType {
     data: {
