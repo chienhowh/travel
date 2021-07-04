@@ -7,7 +7,7 @@ import React from "react";
 
 import { useTranslation } from 'react-i18next';
 import { changeLanguageActionCreator } from "../../redux/language/languageAction";
-import { useDispatch } from 'react-redux'; 
+import { useDispatch } from 'react-redux';
 import { useSelector } from '../../redux/hooks'; //
 
 
@@ -44,7 +44,8 @@ export const Header: React.FC = () => {
                 <img src={logo} alt="" className={style['App-logo']} />
                 <Typography.Title level={3} className={style.title}>旅遊網</Typography.Title>
             </span>
-            <Input.Search placeholder="請輸入旅遊目的地" className={style['search-input']}></Input.Search>
+            <Input.Search placeholder="請輸入旅遊目的地" className={style['search-input']}
+                onSearch={(keywords) => history.push(`/search/${keywords}`)}></Input.Search>
         </Layout.Header>
 
         <Menu mode={"horizontal"} className={style["main-menu"]}>

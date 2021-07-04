@@ -5,12 +5,14 @@ import thunk from 'redux-thunk';
 import { actionLog } from './middlewares/actionlog';
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { productDetail } from './productdetail/slice';
+import { productSearch } from './productSearch/slice';
 
 // 包含全部reducer
 const rootReducer = combineReducers({
     language: languageReducer,
     recommendProduct: recommendProductReducer,
-    productDetail: productDetail.reducer
+    productDetail: productDetail.reducer,
+    productSearch: productSearch.reducer
 })
 // const store = createStore(rootReducer, applyMiddleware(thunk, actionLog));
 
