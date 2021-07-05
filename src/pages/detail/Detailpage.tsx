@@ -8,6 +8,7 @@ import { commentMockData } from './mockup';
 import { useSelector } from '../../redux/hooks';
 import { getProductDetail } from '../../redux/productdetail/slice';
 import { useDispatch } from 'react-redux';
+import { MainLayout } from '../../layouts/mainLayout';
 interface MatchParams {
     touristRouteId: string;
 }
@@ -46,8 +47,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
     /** fetch data end */
 
     return (<>
-        <Header></Header>
-        <div className={styles['page-content']}>
+        <MainLayout>
             {/* 簡介 */}
             <div className={styles['product-intro-container']}>
                 <Row>
@@ -190,8 +190,6 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                 </div>
 
             </div>
-        </div>
-
-        <Footer></Footer>
+        </MainLayout>
     </>)
 }

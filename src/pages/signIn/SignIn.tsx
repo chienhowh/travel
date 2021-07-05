@@ -1,3 +1,9 @@
-export const SignIn: React.FC = ()=>{
-    return (<h1>登錄</h1>)
+import { UserLayout } from "../../layouts/userLayout";
+import { SignInForm } from "./SignInForm";
+
+export const SignIn: React.FC = () => {
+    return (
+        <UserLayout>
+            <SignInForm></SignInForm>
+        </UserLayout>)
 }

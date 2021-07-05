@@ -1,6 +1,6 @@
 import { Row, Col, Spin } from "antd";
 import React, { useEffect } from "react";
-import { Header, SideMenu, ProductCollection, Footer, Carousel } from "../../components";
+import { SideMenu, ProductCollection, Carousel } from "../../components";
 
 import style from './Homepage.module.css';
 import sideImage from '../../assets/images/sider_2019_12-09.png';
@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from "../../redux/hooks";
 import { fetchRecommendProductCreator } from "../../redux/recommendProduct/recommendProductAction";
 import { useDispatch } from 'react-redux';
+import { MainLayout } from "../../layouts/mainLayout";
 
 export const Homepage: React.FC = () => {
     const { t } = useTranslation();// i18n
@@ -18,14 +19,17 @@ export const Homepage: React.FC = () => {
     const isLoading = useSelector(state => state.recommendProduct.isLoading);
     const dispatch = useDispatch();
 
-     function getRecommendProduct() {
-         dispatch(fetchRecommendProductCreator());
+
+    function getRecommendProduct() {
+        dispatch(fetchRecommendProductCreator());
     }
 
     useEffect(() => {
         getRecommendProduct();
         // eslint-disable-next-line
     }, []);
+
+    
 
     if (isLoading) {
         return <Spin size="large"
@@ -43,9 +47,8 @@ export const Homepage: React.FC = () => {
 
 
     return (<>
-        <Header></Header>
-        {/* 頁面內容 */}
-        <div className={style['page-content']}>
+        <MainLayout>
+            {/* 頁面內容 */}
             <Row>
                 <Col span={6}> <SideMenu /></Col>
                 <Col span={18}><Carousel /></Col>
@@ -53,9 +56,7 @@ export const Homepage: React.FC = () => {
             <ProductCollection title={t('home_page.hot_recommended')} sideImage={sideImage} products={productList[0].touristRoutes}></ProductCollection>
             <ProductCollection title={t('home_page.new_arrival')} sideImage={sideImage2} products={productList[1].touristRoutes}></ProductCollection>
             <ProductCollection title={t('home_page.domestic_travel')} sideImage={sideImage3} products={productList[2].touristRoutes}></ProductCollection>
-        </div>
-        <Footer></Footer>
-
+        </MainLayout>
     </>)
 
 }
