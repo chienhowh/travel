@@ -20,12 +20,18 @@ interface JwtPayload extends defaultJwtPayload {
 
 export const Header: React.FC = () => {
     const history = useHistory(); // router
+    const dispatch = useDispatch();// dispatch action
     const { t } = useTranslation(); // i18n
+    /** i18 start */
     const language = useSelector(state => state.language.language); // store get language
     const languageList = useSelector(state => state.language.languageList);
-    const dispatch = useDispatch();// dispatch action
+    /** i18 end */
+
     const jwt = useSelector(s => s.user.token);
     const [username, setUsername] = useState('');
+
+    const shoppingCartItems = useSelector(s=>s.shoppingCart.items);
+    const shoppingCartLoading = useSelector(s=>s.shoppingCart.loading);
 
     const handleLanguage = (e: any) => {
         const action = changeLanguageActionCreator(e.key);
@@ -38,7 +44,6 @@ export const Header: React.FC = () => {
     }
 
     useEffect(() => {
-        console.log(jwt);
         if (jwt) {
             const token = jwt_decode<JwtPayload>(jwt);
             setUsername(token.username);
@@ -55,15 +60,17 @@ export const Header: React.FC = () => {
                     {language}
                 </Dropdown.Button>
                 {jwt ? 
+                    // 登入狀態顯示
                     <Button.Group className={style["button-group"]}>
                         <span>
                             {t("header.welcome")}
                             <Typography.Text strong>{username}</Typography.Text>
                         </span>
-                        <Button>{t("header.shoppingCart")}</Button>
+                        <Button onClick={()=>history.push('/shoppingCart')}loading={shoppingCartLoading}>{t("header.shoppingCart")}{shoppingCartItems.length}</Button>
                         <Button onClick={onLogout}>{t("header.signOut")}</Button>
                     </Button.Group>
                  : 
+                    // 未登入狀態顯示
                     <Button.Group className={style["button-group"]}>
                         <Button onClick={() => history.push("/register")}>
                             {t("header.register")}

@@ -57,6 +57,7 @@
   line-height: 64px !important;
   display: inline;
   color: #03A9F4 !important;
+  cursor: pointer;
 }
 
 .search-input {

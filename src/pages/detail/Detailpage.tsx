@@ -2,13 +2,15 @@
 import { useEffect } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Header, Footer, ProductIntro, ProductComments } from '../../components';
-import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu } from 'antd';
+import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu, Button } from 'antd';
 import styles from './Detailpage.module.css';
 import { commentMockData } from './mockup';
 import { useSelector } from '../../redux/hooks';
 import { getProductDetail } from '../../redux/productdetail/slice';
 import { useDispatch } from 'react-redux';
 import { MainLayout } from '../../layouts/mainLayout';
+import { addShoppingCart } from '../../redux/shoppingCart/slice';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 interface MatchParams {
     touristRouteId: string;
 }
@@ -16,19 +18,19 @@ interface MatchParams {
 const { RangePicker } = DatePicker;
 
 export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) => {
+    const dispatch = useDispatch();
+
     const { touristRouteId } = useParams<MatchParams>();
-    // const [error, setError] = useState<string | null>(null);
-    // const [isLoading, setIsLoading] = useState<boolean>(true);
-    // const [product, setProduct] = useState<any>(null);
     const error = useSelector(state => state.productDetail.error);
     const loading = useSelector(state => state.productDetail.loading);
     const product = useSelector(state => state.productDetail.product);
-    const dispatch = useDispatch();
+
+    const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
+    const jwt = useSelector(s=>s.user.token) as string;
 
     useEffect(() => {
         dispatch(getProductDetail(touristRouteId))
-    },  // eslint-disable-next-line
-        []);
+    }, []);
 
     /** fetch data 保護 */
     if (loading) {
@@ -61,7 +63,22 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                             rating={product.rating}
                             pictures={product.touristRoutePictures.map((p: any) => p.url)}></ProductIntro>
                     </Col>
-                    <Col span={11}><RangePicker /></Col>
+                    <Col span={11}>
+                        <Button
+                            style={{ marginTop: 50, marginBottom: 30, display: "block" }}
+                            type="primary"
+                            danger
+                            loading={shoppingCartLoading}
+                            onClick={() => {
+                                dispatch(
+                                    addShoppingCart({ jwt, touristRouteId: product.id })
+                                );
+                            }}
+                        >
+                            <ShoppingCartOutlined />
+                            放入購物車
+                        </Button>
+                        <RangePicker /></Col>
                 </Row>
             </div>
             {/* 導航 */}

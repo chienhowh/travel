@@ -1,3 +1,4 @@
+import { shoppingCart } from './shoppingCart/slice';
 import { user } from './user/slice';
 import languageReducer from './language/languageReducer';
 import recommendProductReducer from './recommendProduct/recommendProductReducer';
@@ -7,6 +8,7 @@ import { productDetail } from './productdetail/slice';
 import { productSearch } from './productSearch/slice';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { order } from './order/slice';
 
 
 // 持久化
@@ -23,7 +25,9 @@ const rootReducer = combineReducers({
     recommendProduct: recommendProductReducer,
     productDetail: productDetail.reducer,
     productSearch: productSearch.reducer,
-    user: user.reducer
+    user: user.reducer,
+    shoppingCart: shoppingCart.reducer,
+    order: order.reducer
 })
 
 // 轉換reducer成持久化
