@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import style from './App.module.css';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect,HashRouter } from 'react-router-dom'
 import { DetailPage, Homepage, PlaceOrder, Register, SearchPage, SignIn } from './pages';
 import { ShoppingCart } from './pages';
 import { useSelector } from './redux/hooks';
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className={style.App}>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route exact path='/' component={Homepage}></Route>
           <Route path='/signIn' component={SignIn}></Route>
@@ -51,7 +51,7 @@ function App() {
           <PrivatRoute path='/placeOrder' component={PlaceOrder} Authenticated={jwt !== null}></PrivatRoute>
           <Route render={() => <h1>404</h1>}></Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
