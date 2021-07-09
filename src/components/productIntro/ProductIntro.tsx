@@ -1,7 +1,7 @@
 import { Typography, Carousel, Table, Image, Rate } from "antd";
 import { ColumnsType } from "antd/lib/table/interface";
 import styles from './ProductIntro.module.css';
-
+import uuid from 'react-uuid';
 // 旅遊資料
 interface PropsType {
     title: string;
@@ -52,15 +52,15 @@ export const ProductIntro: React.FC<PropsType> = ({
     const tableDataSource: RowType[] = [
         {
             key: 0,
-            title: "路线名称",
+            title: "路線名稱",
             description: title,
         },
         {
             key: 1,
-            title: "价格",
+            title: "價格",
             description: (
                 <>
-                    ¥{" "}
+                    ${" "}
                     <Typography.Text type="danger" strong>
                         {price}
                     </Typography.Text>
@@ -69,26 +69,26 @@ export const ProductIntro: React.FC<PropsType> = ({
         },
         {
             key: 2,
-            title: "限时抢购折扣",
+            title: "限時搶購折購",
             description: discount ? (
                 <>
-                    ¥ <Typography.Text delete>{price}</Typography.Text>{" "}
+                    $ <Typography.Text delete>{price}</Typography.Text>{" "}
                     <Typography.Text type="danger" strong>
-                        ¥ {discount}
+                        $ {discount}
                     </Typography.Text>
                 </>
             ) : (
-                "暂无折扣"
+                "暫無折扣"
             ),
         },
         {
             key: 2,
-            title: "领取优惠",
-            description: coupons ? discount : "无优惠券可领",
+            title: "領取優惠",
+            description: coupons ? discount : "無優惠券可領",
         },
         {
             key: 2,
-            title: "线路评价",
+            title: "線路評價",
             description: (
                 <>
                     <Rate allowHalf defaultValue={+rating} />
@@ -104,7 +104,7 @@ export const ProductIntro: React.FC<PropsType> = ({
         <Typography.Text>{shortDescription}</Typography.Text>
         <div className={styles["intro-detail-content"]}>
             <Typography.Text style={{ marginLeft: 20 }}>
-                ¥ <span className={styles["intro-detail-strong-text"]}>{price}</span>{" "}
+                $ <span className={styles["intro-detail-strong-text"]}>{price}</span>{" "}
                 /人起
             </Typography.Text>
             <Typography.Text style={{ marginLeft: 50 }}>
@@ -114,7 +114,7 @@ export const ProductIntro: React.FC<PropsType> = ({
         </div>
         <Carousel autoplay slidesToShow={3}>
             {pictures.map((p) => (
-                <Image height={150} src={p} />
+                <Image height={150} src={p} key={uuid()} />
             ))}
         </Carousel>
         <Table

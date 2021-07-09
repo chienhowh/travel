@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
-import { Header, Footer, ProductIntro, ProductComments } from '../../components';
+import { ProductIntro, ProductComments } from '../../components';
 import { Spin, Row, Col, DatePicker, Divider, Typography, Anchor, Menu, Button } from 'antd';
 import styles from './Detailpage.module.css';
 import { commentMockData } from './mockup';
@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import { MainLayout } from '../../layouts/mainLayout';
 import { addShoppingCart } from '../../redux/shoppingCart/slice';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+
+
 interface MatchParams {
     touristRouteId: string;
 }
@@ -26,7 +28,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
     const product = useSelector(state => state.productDetail.product);
 
     const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
-    const jwt = useSelector(s=>s.user.token) as string;
+    const jwt = useSelector(s => s.user.token) as string;
 
     useEffect(() => {
         dispatch(getProductDetail(touristRouteId))
