@@ -3,7 +3,7 @@ import { user } from './user/slice';
 import languageReducer from './language/languageReducer';
 import recommendProductReducer from './recommendProduct/recommendProductReducer';
 import { actionLog } from './middlewares/actionlog';
-import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { productDetail } from './productdetail/slice';
 import { productSearch } from './productSearch/slice';
 import { persistStore, persistReducer } from 'redux-persist'

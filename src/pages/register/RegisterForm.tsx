@@ -40,15 +40,14 @@ export const RegisterForm: React.FC = () => {
                 label="Confirm Password"
                 name="confirmPassword"
                 rules={[{ required: true, message: 'Please input your password!' },
-                (({ getFieldValue }) => ({
-                    validator(role, value) {
-                        if (value || getFieldValue('password') === value) {
+                 ({ getFieldValue }) => ({
+                    validator(_, value) {
+                        if (!value || getFieldValue('password') === value) {
                             return Promise.resolve();
-                        } else {
-                            return Promise.reject('與密碼不一致');
                         }
-                    }
-                }))
+                        return Promise.reject(new Error('與密碼不符'));
+                    },
+                }),
                 ]}
             >
                 <Input.Password />

@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.1.7",
     "antd": "^4.16.3",
     "axios": "^0.21.1",
+    "chinese-conv": "^1.0.1",
     "i18next": "^20.3.2",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
