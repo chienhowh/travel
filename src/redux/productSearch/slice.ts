@@ -29,6 +29,8 @@ export const getProductSearch = createAsyncThunk(
     }, thunkAPI) => {
         let url = `http://123.56.149.216:8089/api/touristRoutes?pageSize=${parameters.pageSize}&pageNumber=${parameters.pageNumber}`
 
+        console.log(parameters.keywords)
+
         if (parameters.keywords) {
             url += `&keyword=${parameters.keywords}`;
         }

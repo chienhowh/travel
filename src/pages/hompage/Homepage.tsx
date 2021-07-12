@@ -38,6 +38,7 @@ export const Homepage: React.FC = () => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 width: "100%",
+                height:"100vh"
             }}></Spin>
     }
     if (error) {

@@ -46,7 +46,7 @@ function App() {
           <Route path='/signIn' component={SignIn}></Route>
           <Route path='/register' component={Register}></Route>
           <Route path='/detail/:touristRouteId' component={DetailPage}></Route>
-          <Route path='/search/:keyword?' component={SearchPage}></Route>
+          <Route path='/search/:keywords' component={SearchPage}></Route>
           <PrivatRoute path='/shoppingCart' component={ShoppingCart} Authenticated={jwt !== null}></PrivatRoute>
           <PrivatRoute path='/placeOrder' component={PlaceOrder} Authenticated={jwt !== null}></PrivatRoute>
           <Route render={() => <h1>404</h1>}></Route>
