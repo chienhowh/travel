@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getProductDetail } from "../productdetail/slice";
-
+import { tify } from 'chinese-conv';
 interface ProductSearchState {
     loading: boolean;
     error: null | string;
@@ -29,15 +29,22 @@ export const getProductSearch = createAsyncThunk(
     }, thunkAPI) => {
         let url = `http://123.56.149.216:8089/api/touristRoutes?pageSize=${parameters.pageSize}&pageNumber=${parameters.pageNumber}`
 
-        console.log(parameters.keywords)
+        console.log(parameters.keywords);
 
         if (parameters.keywords) {
             url += `&keyword=${parameters.keywords}`;
         }
         const response = await axios.get(url);
+        const data = response.data;
+        // 轉繁體
+        for (const i in data) {
+            if (typeof data[i] === 'string') {
+                data[i] = tify(data[i]);
+            }
+        }
         return {
             // return的東西會塞進action.payload裡
-            data: response.data,
+            data,
             pagination: JSON.parse(response.headers['x-pagination'])
         }
     }
