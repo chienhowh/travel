@@ -1,9 +1,9 @@
 import React from "react";
 import { Image, Typography } from "antd";
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
-import { tify, sify } from 'chinese-conv';
+import { RouteComponentProps, Link } from 'react-router-dom';
+import { tify } from 'chinese-conv';
 
-interface PropsType extends RouteComponentProps {
+interface PropsType  {
     id: string | number;
     size: "large" | "small";
     imageSrc: string;
@@ -11,15 +11,15 @@ interface PropsType extends RouteComponentProps {
     title: string;
 }
 
-const ProductImageComp: React.FC<PropsType> = ({ id, size, imageSrc, price, title, history, location, match }) => {
+export const ProductImage: React.FC<PropsType> = ({ id, size, imageSrc, price, title }) => {
 
 
     return (
         <Link to={`detail/${id}`}>
             {size === "large" ? (
-                <Image src={imageSrc} height={285} width={490} />
+                <Image src={imageSrc} height={290} width={'100%'} />
             ) : (
-                <Image src={imageSrc} height={120} width={240} />
+                <Image src={imageSrc} height={120} />
             )}
             <div>
                 <Typography.Text type="secondary">
@@ -32,5 +32,3 @@ const ProductImageComp: React.FC<PropsType> = ({ id, size, imageSrc, price, titl
         </Link>
     );
 }
-
-export const ProductImage = withRouter(ProductImageComp)

@@ -14,10 +14,10 @@ export const ProductCollection: React.FC<PropsType> = ({ title, sideImage, produ
         <div className={style.content}>
             <Divider orientation="left"><Typography.Title level={3} type={'warning'}>{title}</Typography.Title> </Divider>
             <Row>
-                <Col span={4}>
+                {/* <Col span={4}>
                     <img src={sideImage} className={style["side-image"]} alt="" />
-                </Col>
-                <Col span={20}>
+                </Col> */}
+                <Col span={24} xl={{ span: 20, offset: 2 }}>
                     <Row>
                         <Col span={12}>
                             <ProductImage

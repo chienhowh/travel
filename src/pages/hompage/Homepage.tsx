@@ -53,8 +53,11 @@ export const Homepage: React.FC = () => {
                 <Col span={6}> <SideMenu /></Col>
                 <Col span={18}><Carousel /></Col>
             </Row>
+            {/* 熱門推薦 */}
             <ProductCollection title={t('home_page.hot_recommended')} sideImage={sideImage} products={productList[0].touristRoutes}></ProductCollection>
+            {/* 新品 */}
             <ProductCollection title={t('home_page.new_arrival')} sideImage={sideImage2} products={productList[1].touristRoutes}></ProductCollection>
+            {/* 國內遊 */}
             <ProductCollection title={t('home_page.domestic_travel')} sideImage={sideImage3} products={productList[2].touristRoutes}></ProductCollection>
         </MainLayout>
     </>)
