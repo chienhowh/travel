@@ -1,6 +1,6 @@
 import { GlobalOutlined } from "@ant-design/icons"
 import logo from '../../assets/logo.svg';
-import { Typography, Dropdown, Menu, Button, Layout, Input } from "antd"
+import { Typography, Dropdown, Menu, Button, Input } from "antd"
 import style from './Header.module.css';
 import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
@@ -30,8 +30,8 @@ export const Header: React.FC = () => {
     const jwt = useSelector(s => s.user.token);
     const [username, setUsername] = useState('');
 
-    const shoppingCartItems = useSelector(s=>s.shoppingCart.items);
-    const shoppingCartLoading = useSelector(s=>s.shoppingCart.loading);
+    const shoppingCartItems = useSelector(s => s.shoppingCart.items);
+    const shoppingCartLoading = useSelector(s => s.shoppingCart.loading);
 
     const handleLanguage = (e: any) => {
         const action = changeLanguageActionCreator(e.key);
@@ -52,26 +52,30 @@ export const Header: React.FC = () => {
 
     return (<div className={style['app-header']}>
         <div className={style['top-header']}>
-            <div className={style.inner}>
+            <div>
                 <Typography.Text>{t('header.slogan')}</Typography.Text>
                 <Dropdown.Button style={{ marginLeft: 15 }} icon={<GlobalOutlined />} overlay={<Menu onClick={handleLanguage}>
                     {languageList.map(lan => <Menu.Item key={lan.code}>{lan.name}</Menu.Item>)}
                 </Menu>}>
                     {language}
                 </Dropdown.Button>
-                {jwt ? 
+            </div>
+            <div>
+                {jwt ?
                     // 登入狀態顯示
-                    <Button.Group className={style["button-group"]}>
-                        <span>
+                    <>
+                        <span style={{marginRight:16}}>
                             {t("header.welcome")}
                             <Typography.Text strong>{username}</Typography.Text>
                         </span>
-                        <Button onClick={()=>history.push('/shoppingCart')}loading={shoppingCartLoading}>{t("header.shoppingCart")}{shoppingCartItems.length}</Button>
-                        <Button onClick={onLogout}>{t("header.signOut")}</Button>
-                    </Button.Group>
-                 : 
+                        <Button.Group>
+                            <Button onClick={() => history.push('/shoppingCart')} loading={shoppingCartLoading}>{t("header.shoppingCart")}({shoppingCartItems.length})</Button>
+                            <Button onClick={onLogout}>{t("header.signOut")}</Button>
+                        </Button.Group>
+                    </>
+                    :
                     // 未登入狀態顯示
-                    <Button.Group className={style["button-group"]}>
+                    <Button.Group >
                         <Button onClick={() => history.push("/register")}>
                             {t("header.register")}
                         </Button>
@@ -82,14 +86,14 @@ export const Header: React.FC = () => {
                 }
             </div>
         </div>
-        <Layout.Header className={style['main-header']}>
+        <div className={style['main-header']}>
             <span onClick={() => history.push('/')}>
                 <img src={logo} alt="" className={style['App-logo']} />
                 <Typography.Title level={3} className={style.title}>旅遊網</Typography.Title>
             </span>
             <Input.Search placeholder="請輸入旅遊目的地" className={style['search-input']}
                 onSearch={(keywords) => history.push(`/search/${keywords}`)}></Input.Search>
-        </Layout.Header>
+        </div>
 
         <Menu mode={"horizontal"} className={style["main-menu"]}>
             <Menu.Item key="1"> {t("header.home_page")} </Menu.Item>
