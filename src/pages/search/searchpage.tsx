@@ -5,7 +5,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
 import { getProductSearch } from "../../redux/productSearch/slice";
-import { Spin } from "antd";
+import { Spin, Typography } from "antd";
 import { MainLayout } from "../../layouts/mainLayout";
 
 interface MatchParams {
@@ -44,9 +44,7 @@ export const SearchPage: React.FC = () => {
                 width: "100%",
             }}></Spin>)
     }
-    if (error) {
-        return <div>網站出錯：{error}</div>
-    }
+    
     /** fetch data end */
     return (<>
         <MainLayout>
@@ -56,7 +54,9 @@ export const SearchPage: React.FC = () => {
             </div>
             {/* 結果列表 */}
             <div className={styles["product-list-container"]}>
-                <ProductList data={data} paging={pagination} onPageChange={onPageChange}></ProductList>
+                {error ?
+                    <div><Typography.Title level={3}>查無此旅遊路線</Typography.Title></div> :
+                    <ProductList data={data} paging={pagination} onPageChange={onPageChange}></ProductList>}
             </div>
         </MainLayout>
     </>)
