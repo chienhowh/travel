@@ -3,12 +3,12 @@ export const sideMenuList = [
         title: "主题旅游",
         subMenu: [
             {
-                title: "爸妈游",
-                subMenu: ["祈福拜佛", "古镇游玩", "桂林山水", "红色之旅"],
+                title: "爸媽遊",
+                subMenu: ["祈福拜佛", "古鎮遊玩", "桂林山水"],
             },
             {
                 title: "亲子游",
-                subMenu: ["上海迪士尼", "探险体验", "海洋公园", "感受名校"],
+                subMenu: ["上海迪士尼", "探險體驗", "海洋公园", "感受名校"],
             },
             {
                 title: "蜜月游",

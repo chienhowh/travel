@@ -16,6 +16,7 @@
 .main-header {
   background-color: white !important;
   height: 60px;
+  padding-left: 4%;
   line-height: 60px;
   margin-left: auto;
   margin-right: auto;
