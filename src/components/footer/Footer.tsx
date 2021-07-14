@@ -3,8 +3,8 @@ import React from "react";
 import { useTranslation } from 'react-i18next'
 
 export const Footer: React.FC = () => {
-    const {t} = useTranslation();
-    return (<Layout.Footer>
+    const { t } = useTranslation();
+    return (<Layout.Footer style={{ marginTop: 'auto' }}>
         <Typography.Title level={3} style={{ textAlign: 'center' }}>
             {t('footer.detail')}
         </Typography.Title>

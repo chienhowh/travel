@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Affix, Col, Row } from 'antd';
 import styles from './ShoppingCart.module.css';
 import { MainLayout } from '../../layouts/mainLayout';
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/hooks";
 import { PaymentCard, ProductList } from "../../components";
-import { checkout, clearShoppingCart } from "../../redux/shoppingCart/slice";
+import { checkout, clearShoppingCart, getShoppingCart } from "../../redux/shoppingCart/slice";
 import { useHistory } from "react-router-dom";
 export const ShoppingCart: React.FC = () => {
     const history = useHistory();
@@ -14,18 +14,21 @@ export const ShoppingCart: React.FC = () => {
     const shoppingCartItems = useSelector(s => s.shoppingCart.items);
     const jwt = useSelector(s => s.user.token) as string;
 
+    useEffect(()=>{
+        dispatch(getShoppingCart(jwt));
+    },[])
     return (
         <MainLayout>
             <Row>
                 {/* 商品列 */}
-                <Col span={16}>
+                <Col span={15}>
                     <div className={styles["product-list-container"]}>
                         <ProductList data={shoppingCartItems.map(item => item.touristRoute)} />
                     </div>
                 </Col>
                 {/* 付款信息 */}
-                <Col span={8}>
-                    <Affix>
+                <Col span={8} offset={1}>
+                    
                         <div className={styles["payment-card-container"]}>
                             <PaymentCard
                                 loading={loading}
@@ -42,7 +45,7 @@ export const ShoppingCart: React.FC = () => {
                                 onShoppingCartClear={() => dispatch(clearShoppingCart({ jwt, itemIds: shoppingCartItems.map(item => item.id) }))}
                             />
                         </div>
-                    </Affix>
+                   
                 </Col>
             </Row>
 

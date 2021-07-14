@@ -58,8 +58,8 @@
 }
 
 .main-menu {
-  padding-left: 6% !important;
-  padding-right: 6% !important;
+  display: flex;
+  justify-content: space-evenly;
   background-color: #1976d2 !important;
   color: #f5f5f5 !important;
 }

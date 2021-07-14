@@ -15,12 +15,12 @@ interface OrderItem {
 
 const columns: ColumnsType<OrderItem> = [
   {
-    title: "产品",
+    title: "產品",
     dataIndex: "item",
     key: "item",
   },
   {
-    title: "价格",
+    title: "價格",
     dataIndex: "amount",
     key: "amount",
   },
@@ -40,23 +40,23 @@ export const CheckOutCard: React.FC<PropsType> = ({
   const history = useHistory();
 
   const paymentData: OrderItem[] = order
-    ? order.orderItems.map((i:any, index:any) => ({
-        key: index,
-        item: i.touristRoute.title,
-        amount: (
-            <>
-              <Text delete>¥ {i.originalPrice} </Text>{" "}
-              <Text type="danger" strong>
-                ¥ {i.originalPrice * i.discountPresent}
-              </Text>
-            </>
-          ),
-      }))
+    ? order.orderItems.map((i: any, index: any) => ({
+      key: index,
+      item: i.touristRoute.title,
+      amount: (
+        <>
+          <Text delete>NT {i.originalPrice} </Text>{" "}
+          <Text type="danger" strong>
+            NT {i.originalPrice * i.discountPresent}
+          </Text>
+        </>
+      ),
+    }))
     : [];
 
   return (
     <Card
-      style={{ width: 600, marginTop: 50 }}
+      style={{ marginTop: 50 }}
       actions={[
         order && order.state === "Completed" ? (
           <Button
@@ -81,7 +81,7 @@ export const CheckOutCard: React.FC<PropsType> = ({
         <Meta
           title={
             <Title level={2}>
-              {order && order.state === "Completed" ? "支付成功" : "总计"}
+              {order && order.state === "Completed" ? "支付成功" : "總計"}
             </Title>
           }
           description={

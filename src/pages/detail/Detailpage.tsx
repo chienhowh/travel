@@ -84,24 +84,14 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                 </Row>
             </div>
             {/* 導航 */}
-            <Anchor>
-                <Menu mode="horizontal">
-                    <Menu.Item key="1">
-                        <Anchor.Link href="#features" title="產品特色"></Anchor.Link>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Anchor.Link href="#fees" title="費用"></Anchor.Link>
-                    </Menu.Item>
-                    <Menu.Item key="3">
-                        <Anchor.Link href="#notes" title="預訂須知"></Anchor.Link>
-                    </Menu.Item>
-                    <Menu.Item key="4">
-                        <Anchor.Link href="#comments" title="用戶評價"></Anchor.Link>
-                    </Menu.Item>
-                </Menu>
-            </Anchor>
+            <Anchor className={styles['product-detail-anchor']}>
+                <Anchor.Link href="#features" title="產品特色"></Anchor.Link>
+                <Anchor.Link href="#fees" title="費用"></Anchor.Link>
+                <Anchor.Link href="#notes" title="預訂須知"></Anchor.Link>
+                <Anchor.Link href="#comments" title="用戶評價"></Anchor.Link>
+            </Anchor> 
             {/* 產品特色 */}
-            <div id="features" className={styles['product-intro-container']} >
+            <div id="features"  className={styles['product-detail-container']} >
                 <Divider orientation={'center'}>
                     <Typography.Title level={3}>
                         產品特色
@@ -110,7 +100,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                 <div dangerouslySetInnerHTML={{ __html: product.features }} style={{ margin: 50 }}></div>
             </div>
             {/* 產品費用 */}
-            <div id="fees" className={styles['product-intro-container']}>
+            <div id="fees" className={styles['product-detail-container']}>
                 <Divider orientation={'center'}>
                     <Typography.Title level={3}>
                         產品費用
@@ -119,7 +109,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                 <div dangerouslySetInnerHTML={{ __html: product.fees }} style={{ margin: 50 }}></div>
             </div>
             {/* 產品備註 */}
-            <div id="notes" className={styles['product-intro-container']}>
+            <div id="notes" className={styles['product-detail-container']}>
                 <Divider orientation={'center'}>
                     <Typography.Title level={3}>
                         產品備註
@@ -128,7 +118,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                 <div dangerouslySetInnerHTML={{ __html: product.notes }} style={{ margin: 50 }}></div>
             </div>
             {/* 評價 */}
-            <div id="comments" className={styles['product-intro-container']}>
+            <div id="comments" className={styles['product-detail-container']}>
                 <Divider orientation={'center'}>
                     <Typography.Title level={3}>
                         用戶評價

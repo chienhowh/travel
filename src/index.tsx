@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import 'antd/dist/antd.css';
+import './global-overwrite.scss';
+import './index.css';
 import './i18n/configs'
 import { Provider } from 'react-redux';
 import rootStore from './redux/store';

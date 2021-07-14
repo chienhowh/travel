@@ -1,0 +1,19 @@
+/* .main-header {
+    background-color: white !important;
+    height: 60px;
+    line-height: 60px;
+    width: 88%;
+    margin: 0 auto;
+  } */
+
+// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item,
+// .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+//   padding: 0;
+// }
+
+.ant-divider-horizontal.ant-divider-with-text {
+  &::after,
+  &::before {
+    border-top: 1px solid #aaa;
+  }
+}

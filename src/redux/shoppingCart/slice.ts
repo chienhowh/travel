@@ -1,6 +1,7 @@
 
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { tify } from 'chinese-conv';
 
 interface ShoppingCartState {
     loading: boolean;
@@ -20,7 +21,19 @@ export const getShoppingCart = createAsyncThunk(
     async (jwt: string, thunkAPI) => {
         const { data } = await axios.get(`http://123.56.149.216:8089/api/shoppingCart`,
             { headers: { Authorization: `bearer ${jwt}` } });
-        return data.shoppingCartItems;
+        const shoppingCartItems = data.shoppingCartItems;
+        // 轉繁體
+        const tifyData = shoppingCartItems.map((d: any) => {
+            const touristRoute = d.touristRoute;
+            for (const i in touristRoute) {
+                if (typeof touristRoute[i] === 'string') {
+                    touristRoute[i] = tify(touristRoute[i]);
+                }
+            }
+            return d;
+        });
+        console.log(tifyData)
+        return tifyData;
     }
 )
 
@@ -37,10 +50,22 @@ export const addShoppingCart = createAsyncThunk(
 
 export const checkout = createAsyncThunk(
     'shoppingCart/checkout',
-    async ( jwt: string , thunkAPI) => {
+    async (jwt: string, thunkAPI) => {
         const { data } = await axios.post(`http://123.56.149.216:8089/api/shoppingCart/checkout`,
             null,
             { headers: { Authorization: `bearer ${jwt}` } });
+        const orderItems = data.orderItems;
+        // 轉繁體
+        orderItems.map((d: any) => {
+            const touristRoute = d.touristRoute;
+            for (const i in touristRoute) {
+                if (typeof touristRoute[i] === 'string') {
+                    touristRoute[i] = tify(touristRoute[i]);
+                }
+            }
+            return d;
+        });
+
         return data;
     }
 );
