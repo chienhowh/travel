@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { MainLayout } from '../../layouts/mainLayout';
 import { addShoppingCart } from '../../redux/shoppingCart/slice';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import uuid from 'react-uuid';
 
 
 interface MatchParams {
@@ -63,6 +64,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                             points={product.points}
                             discount={product.price}
                             rating={product.rating}
+                            key={uuid()}
                             pictures={product.touristRoutePictures.map((p: any) => p.url)}></ProductIntro>
                     </Col>
                     <Col span={11}>
@@ -136,6 +138,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
                                     points={product.points}
                                     discount={product.price}
                                     rating={product.rating}
+                                    key={uuid()}
                                     pictures={product.touristRoutePictures.map((p: any) => p.url)}></ProductIntro>
                             </Col>
                             <Col span={11}><RangePicker /></Col>
