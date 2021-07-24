@@ -6,7 +6,7 @@ import { actionLog } from './middlewares/actionlog';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { productDetail } from './productdetail/slice';
 import { productSearch } from './productSearch/slice';
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, PERSIST } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { order } from './order/slice';
 
@@ -36,7 +36,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // const store = createStore(rootReducer, applyMiddleware(thunk, actionLog));
 const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), actionLog]
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware({ serializableCheck: { ignoredActions: [PERSIST] } }), actionLog]
 })
 
 const persistor = persistStore(store);
@@ -44,4 +44,5 @@ const persistor = persistStore(store);
 // store會有全部reducer的資料，rootState儲存所有資料類型
 export type RootState = ReturnType<typeof store.getState>
 
-export default { store, persistor };
+const exportObj = { store, persistor }
+export default exportObj;

@@ -36,6 +36,7 @@ function App() {
     if (jwt) {
       dispatch(getShoppingCart(jwt));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwt])
 
   return (

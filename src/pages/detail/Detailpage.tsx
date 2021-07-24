@@ -33,6 +33,8 @@ export const DetailPage: React.FC<RouteComponentProps<MatchParams>> = (props) =>
 
     useEffect(() => {
         dispatch(getProductDetail(touristRouteId))
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     /** fetch data 保護 */

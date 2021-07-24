@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Typography } from "antd";
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { tify } from 'chinese-conv';
 
 interface PropsType  {

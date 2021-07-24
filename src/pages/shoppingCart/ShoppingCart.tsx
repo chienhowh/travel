@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Affix, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import styles from './ShoppingCart.module.css';
 import { MainLayout } from '../../layouts/mainLayout';
 import { useDispatch } from "react-redux";
@@ -14,9 +14,11 @@ export const ShoppingCart: React.FC = () => {
     const shoppingCartItems = useSelector(s => s.shoppingCart.items);
     const jwt = useSelector(s => s.user.token) as string;
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getShoppingCart(jwt));
-    },[])
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <MainLayout>
             <Row>
@@ -28,24 +30,24 @@ export const ShoppingCart: React.FC = () => {
                 </Col>
                 {/* 付款信息 */}
                 <Col span={8} offset={1}>
-                    
-                        <div className={styles["payment-card-container"]}>
-                            <PaymentCard
-                                loading={loading}
-                                originalPrice={shoppingCartItems.map(item => item.originalPrice).reduce((a, b) => a + b, 0)}
-                                price={shoppingCartItems.map(item => item.originalPrice * (item.discountPresent ?? 1)).reduce((a, b) => a + b, 0)}
-                                onCheckout={() => { 
-                                    if(shoppingCartItems.length<=0){
-                                        return
-                                    }else{
-                                        dispatch(checkout(jwt));
-                                        history.push('/placeOrder')
-                                    }
-                                }}
-                                onShoppingCartClear={() => dispatch(clearShoppingCart({ jwt, itemIds: shoppingCartItems.map(item => item.id) }))}
-                            />
-                        </div>
-                   
+
+                    <div className={styles["payment-card-container"]}>
+                        <PaymentCard
+                            loading={loading}
+                            originalPrice={shoppingCartItems.map(item => item.originalPrice).reduce((a, b) => a + b, 0)}
+                            price={shoppingCartItems.map(item => item.originalPrice * (item.discountPresent ?? 1)).reduce((a, b) => a + b, 0)}
+                            onCheckout={() => {
+                                if (shoppingCartItems.length <= 0) {
+                                    return
+                                } else {
+                                    dispatch(checkout(jwt));
+                                    history.push('/placeOrder')
+                                }
+                            }}
+                            onShoppingCartClear={() => dispatch(clearShoppingCart({ jwt, itemIds: shoppingCartItems.map(item => item.id) }))}
+                        />
+                    </div>
+
                 </Col>
             </Row>
 

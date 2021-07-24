@@ -31,6 +31,8 @@ export const SearchPage: React.FC = () => {
     useEffect(() => {
         // 發送訊息
         dispatch(getProductSearch({ pageNumber: 1, pageSize: 10, keywords }));
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location])// 監聽router變化，有搜索行為，router就會變化
 
     /** fetch data 保護 */
@@ -44,7 +46,7 @@ export const SearchPage: React.FC = () => {
                 width: "100%",
             }}></Spin>)
     }
-    
+
     /** fetch data end */
     return (<>
         <MainLayout>

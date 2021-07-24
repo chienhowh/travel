@@ -1,7 +1,7 @@
 
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { tify, sify } from 'chinese-conv';
+import { tify} from 'chinese-conv';
 
 interface ProductDetailState {
     loading: boolean;
