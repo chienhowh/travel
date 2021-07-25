@@ -18,6 +18,7 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/63964025/126889419-c17054ac-9a25-4a78-8c09-e9a6d8a485a7.png" width="600">
 </p>
+
 ### 行程詳情
 * 提供行程價格、特色、評價等等。
 * 可將產品加入購物車。
@@ -26,13 +27,14 @@
 <img src="https://user-images.githubusercontent.com/63964025/126895152-64172d31-7913-4a3b-9cf8-d0c0b56e0e67.png" width="300">
 <img src="https://user-images.githubusercontent.com/63964025/126895158-6a5034a6-56fe-4230-9a85-b7d898004125.png" width="300"> 
 </p>
+
 ### 購物車
 * 登入後，可顯示會員購物車。
 * 可點擊下單進入支付頁面。
 * 清空購物車。
 * 點擊行程查看詳情。
 <p align="center">
-<img src="https://user-images.githubusercontent.com/63964025/126895249-0b9dceff-eaca-460b-9e78-cb1b6ce96b71.png" width="300">
+<img src="https://user-images.githubusercontent.com/63964025/126895627-82b66fd1-e569-4291-86d5-8db62734affe.png" width="300">
 <img src="https://user-images.githubusercontent.com/63964025/126895276-224dac0a-573e-4f19-b294-5c448c0293ee.png" width="300">
 </p>
 
@@ -42,10 +44,14 @@
 <img src="https://user-images.githubusercontent.com/63964025/126895479-9e2cf22d-4dc6-4398-8470-f2e8b8460697.png" width="500">
 </p>
 
+### 註冊登錄
+* 表單有驗證功能
+ <p align="center">
+<img src="https://user-images.githubusercontent.com/63964025/126895785-d6a71aa6-2b7b-4419-82f9-2c84c480a923.png" width="300">
+<img src="https://user-images.githubusercontent.com/63964025/126895791-24c0d087-574f-4984-bcc4-5bb235b174c1.png" width="300">
+</p>
 
-
-
-
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
