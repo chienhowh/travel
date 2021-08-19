@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { List, Rate, Image, Tag, Typography } from "antd";
-
+import uuid from 'react-uuid';
 const { Text } = Typography;
 
 interface Product {
@@ -76,7 +76,7 @@ export const ProductList: React.FC<PropsType> = ({
       }
       renderItem={(item) => (
         <List.Item
-          key={item.title}
+          key={uuid()}
           actions={[
             <>
               <Rate defaultValue={item.rating} />
@@ -95,19 +95,19 @@ export const ProductList: React.FC<PropsType> = ({
                 {item.discountPresent ? (
                   <>
                     <Text style={{ fontSize: 20, fontWeight: 400 }} delete>
-                      ¥ {item.originalPrice}
+                      NT {item.originalPrice}
                     </Text>
                     <Text
                       type="danger"
                       style={{ fontSize: 20, fontWeight: 400 }}
                     >
                       {" "}
-                      ¥ {item.price}
+                      NT {item.price}
                     </Text>
                   </>
                 ) : (
                   <Text style={{ fontSize: 20, fontWeight: 400 }}>
-                    ¥ {item.price}
+                    NT {item.price}
                   </Text>
                 )}
                 <Link to={"/detail/" + item.id}> {item.title}</Link>

@@ -1,6 +1,6 @@
 import { Row, Col, Spin } from "antd";
 import React, { useEffect } from "react";
-import { SideMenu, ProductCollection, Carousel } from "../../components";
+import { SideMenu, ProductCollection, Carousel, Loading } from "../../components";
 
 import sideImage from '../../assets/images/sider_2019_12-09.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
@@ -28,18 +28,10 @@ export const Homepage: React.FC = () => {
         // eslint-disable-next-line
     }, []);
 
-    
+
 
     if (isLoading) {
-        return <Spin size="large"
-            style={{
-                marginTop: 200,
-                marginBottom: 200,
-                marginLeft: "auto",
-                marginRight: "auto",
-                width: "100%",
-                height:"100vh"
-            }}></Spin>
+       return <Loading />
     }
     if (error) {
         return <div>網站出錯：{error}</div>

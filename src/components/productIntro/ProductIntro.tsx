@@ -82,12 +82,12 @@ export const ProductIntro: React.FC<PropsType> = ({
             ),
         },
         {
-            key: 2,
+            key: 3,
             title: "領取優惠",
             description: coupons ? discount : "無優惠券可領",
         },
         {
-            key: 2,
+            key: 4,
             title: "線路評價",
             description: (
                 <>
